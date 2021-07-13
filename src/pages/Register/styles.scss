@@ -1,0 +1,23 @@
+#page-register {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+
+  .painel-principal {
+    display: flex;
+
+    width: 80%;
+    height: 80%;
+
+    aside {
+      flex: 7;
+      background: #000;
+    }
+
+    main {
+      flex: 4;
+      background: #bd1abd;
+    }
+  }
+}
