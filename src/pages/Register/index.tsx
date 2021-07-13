@@ -1,5 +1,13 @@
 import "./styles.scss";
 
+import { api } from "../../services/api";
+
+const Teste = async () => {
+  var response = await api.post('/users', 'dados')
+  console.log(response)
+}
+
+
 export function Register() {
   return (
     <div id="page-register">
