@@ -1,5 +1,6 @@
 import "./styles.scss";
 
+import { api } from "../../services/api";
 import { useState } from "react";
 
 interface DataRegister {
@@ -7,6 +8,11 @@ interface DataRegister {
   user: string;
   senha: string;
 }
+
+const Teste = async () => {
+  var response = await api.post("/users", "dados");
+  console.log(response);
+};
 
 export function Register() {
   const [dataRegister, setDataRegister] = useState("");
