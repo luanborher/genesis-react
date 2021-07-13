@@ -6,7 +6,7 @@ import { useState } from "react";
 interface DataRegister {
   email: string;
   user: string;
-  senha: string;
+  password: string;
 }
 
 const Teste = async () => {
@@ -15,21 +15,41 @@ const Teste = async () => {
 };
 
 export function Register() {
-  const [dataRegister, setDataRegister] = useState("");
+  const [dataRegister, setDataRegister] = useState<DataRegister>();
+  const [email, setEmail] = useState("");
+  const [user, setUser] = useState("");
+  const [password, setPassword] = useState("");
 
-  const SendDataOfRegister = () => {};
+  const SendDataOfRegister = () => {
+    setDataRegister({ email: email, user: user, password: password });
+  };
 
   return (
     <div id="page-register">
       <div className="painel-principal">
         <aside>wqewqe</aside>
         <main>
-          <form>
+          <form onSubmit={SendDataOfRegister}>
             <h2>Genesis</h2>
-            <input type="text" placeholder="Digite seu e-mail" />
-            <input type="text" placeholder="Escolha um nome de usuário" />
+            <input
+              type="text"
+              placeholder="Digite seu e-mail"
+              onChange={(event) => setEmail(event.target.value)}
+              value={email}
+            />
+            <input
+              type="text"
+              placeholder="Escolha um nome de usuário"
+              onChange={(event) => setUser(event.target.value)}
+              value={user}
+            />
             <input type="text" placeholder="Digite sua senha" />
-            <input type="text" placeholder="Confirme sua senha" />
+            <input
+              type="text"
+              placeholder="Confirme sua senha"
+              onChange={(event) => setPassword(event.target.value)}
+              value={password}
+            />
             <button type="submit">Cadastrar-se</button>
           </form>
         </main>
