@@ -1,6 +1,18 @@
 import "./styles.scss";
 
+import { useState } from "react";
+
+interface DataRegister {
+  email: string;
+  user: string;
+  senha: string;
+}
+
 export function Register() {
+  const [dataRegister, setDataRegister] = useState("");
+
+  const SendDataOfRegister = () => {};
+
   return (
     <div id="page-register">
       <div className="painel-principal">
