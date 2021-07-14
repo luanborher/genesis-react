@@ -1,17 +1,20 @@
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
-import { Login } from "./pages/Login/index";
-import { Register } from "./pages/Register/index";
+import { AuthContextProvider } from './contexts/AuthContext'
+import { Login } from './pages/Login/index'
+import { Register } from './pages/Register/index'
 
 function App() {
   return (
     <BrowserRouter>
-      <Switch>
-        <Route path="/" exact component={Login} />
-        <Route path="/register" exact component={Register} />
-      </Switch>
+      <AuthContextProvider>
+        <Switch>
+          <Route path="/" exact component={Login} />
+          <Route path="/register" exact component={Register} />
+        </Switch>
+      </AuthContextProvider>
     </BrowserRouter>
-  );
+  )
 }
 
-export default App;
+export default App
