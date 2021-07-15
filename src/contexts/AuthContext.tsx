@@ -5,7 +5,7 @@ import { auth } from '../services/firebase'
 type User = {
   id: string | null
   name: string | null
-  token: () => Promise<string>
+  token: string | null
 }
 type AuthContextType = {
   user: User | undefined
@@ -29,11 +29,11 @@ export function AuthContextProvider(props: AuthContextProviderProps) {
      */
     const unsubscribe = auth.onAuthStateChanged(async (user) => {
       if (user) {
-        const { displayName, uid, getIdToken } = user
+        const { displayName, uid } = user
         setUser({
           id: uid,
           name: displayName,
-          token: getIdToken,
+          token: await user.getIdToken(),
         })
       }
     })
@@ -45,16 +45,17 @@ export function AuthContextProvider(props: AuthContextProviderProps) {
   async function signInEmail(email: string, password: string) {
     auth
       .signInWithEmailAndPassword(email, password)
-      .then(({ user }) => {
+      .then(async ({ user }) => {
         if (user) {
+          console.log(user)
           const { displayName, uid, getIdToken } = user
-          if (displayName || uid) {
+          if (!displayName || !uid) {
             throw new Error('Account with Error')
           }
           setUser({
             id: uid,
             name: displayName,
-            token: getIdToken,
+            token: await getIdToken(),
           })
         }
       })

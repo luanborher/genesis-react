@@ -1,8 +1,10 @@
 import './styles.scss'
 
+import { FormEvent, useState } from 'react'
+
 import logotipo from '../../assets/images/logotipo.png'
 import { useAuth } from '../../hooks/useAuth'
-import { useState } from 'react'
+import { useEffect } from 'react'
 
 interface DataLogin {
   email: string
@@ -10,18 +12,26 @@ interface DataLogin {
 }
 
 export function Login() {
-  const { signInEmail } = useAuth()
-  const [dataLogin, setDataLogin] = useState<Partial<DataLogin>>({
+  const { signInEmail, user } = useAuth()
+  const [dataLogin, setDataLogin] = useState<DataLogin>({
     email: '',
     password: '',
   })
+  const handleLogin = (e: FormEvent) => {
+    e.preventDefault()
+
+    const { email, password } = dataLogin
+    if (email && password) {
+      signInEmail(email, password)
+    }
+  }
 
   return (
     <div id="page-login">
       <div className="painel-principal">
         <aside></aside>
         <main>
-          <form>
+          <form onSubmit={handleLogin}>
             <img src={logotipo} alt="Logotipo do projeto" />
             <input
               type="email"
