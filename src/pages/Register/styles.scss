@@ -17,7 +17,85 @@
 
     main {
       flex: 4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
       background: #bd1abd;
+      padding: 0 32px;
+
+      form {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        max-width: 320px;
+        align-items: stretch;
+        text-align: center;
+        gap: 10px;
+
+        h2 {
+          font-size: 24px;
+          font-family: "Poppins", sans-serif;
+        }
+
+        input {
+          height: 50px;
+          border-radius: 8px;
+          padding: 0 16px;
+          background: #fff;
+          border: 1px solid #ddd;
+          font-size: 12pt;
+        }
+
+        button {
+          margin-top: 16px;
+          height: 50px;
+          border-radius: 8px;
+          font-weight: 500;
+          background: #31837c;
+          color: #fff;
+          padding: 0 32px;
+
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          cursor: pointer;
+          border: 0;
+
+          transition: filter 0.2s;
+
+          &.outlined {
+            background: #fff;
+            border: 1px solid #31837c;
+            color: #31837c;
+          }
+
+          &:not(:disabled):hover {
+            filter: brightness(0.9);
+          }
+
+          &:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+          }
+        }
+
+        button,
+        input {
+          width: 100%;
+        }
+
+        p {
+          font-size: 14px;
+          color: #ddd;
+          margin-top: 16px;
+
+          a {
+            color: #5ef959;
+          }
+        }
+      }
     }
   }
 }

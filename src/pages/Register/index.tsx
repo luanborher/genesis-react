@@ -1,27 +1,31 @@
 import "./styles.scss";
 
+import { FormEvent } from "react";
+import { Link } from "react-router-dom";
 import { api } from "../../services/api";
 import { useState } from "react";
 
 interface DataRegister {
   email: string;
-  user: string;
+  displayName: string;
   password: string;
 }
 
-const Teste = async () => {
-  var response = await api.post("/users", "dados");
-  console.log(response);
-};
-
 export function Register() {
-  const [dataRegister, setDataRegister] = useState<DataRegister>();
-  const [email, setEmail] = useState("");
-  const [user, setUser] = useState("");
-  const [password, setPassword] = useState("");
+  const [dataRegister, setDataRegister] = useState<Partial<DataRegister>>({
+    email: "",
+    displayName: "",
+    password: "",
+  });
 
-  const SendDataOfRegister = () => {
-    setDataRegister({ email: email, user: user, password: password });
+  const SendDataOfRegister = (e: FormEvent) => {
+    e.preventDefault();
+    SendData();
+  };
+
+  const SendData = async () => {
+    var res = await api.post("/users", dataRegister);
+    console.log(res);
   };
 
   return (
@@ -34,23 +38,38 @@ export function Register() {
             <input
               type="text"
               placeholder="Digite seu e-mail"
-              onChange={(event) => setEmail(event.target.value)}
-              value={email}
+              onChange={(event) =>
+                setDataRegister({ ...dataRegister, email: event.target.value })
+              }
+              value={dataRegister.email}
             />
             <input
               type="text"
               placeholder="Escolha um nome de usuário"
-              onChange={(event) => setUser(event.target.value)}
-              value={user}
+              onChange={(event) =>
+                setDataRegister({
+                  ...dataRegister,
+                  displayName: event.target.value,
+                })
+              }
+              value={dataRegister.displayName}
             />
             <input type="text" placeholder="Digite sua senha" />
             <input
               type="text"
               placeholder="Confirme sua senha"
-              onChange={(event) => setPassword(event.target.value)}
-              value={password}
+              onChange={(event) =>
+                setDataRegister({
+                  ...dataRegister,
+                  password: event.target.value,
+                })
+              }
+              value={dataRegister.password}
             />
             <button type="submit">Cadastrar-se</button>
+            <p>
+              Já possui uma conta? <Link to="/">clique aqui</Link>
+            </p>
           </form>
         </main>
       </div>
