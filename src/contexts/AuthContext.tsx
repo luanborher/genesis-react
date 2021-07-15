@@ -5,8 +5,8 @@ import { auth } from '../services/firebase'
 type User = {
   id: string | null
   name: string | null
+  token: () => Promise<string>
 }
-
 type AuthContextType = {
   user: User | undefined
   /**
@@ -20,38 +20,23 @@ type AuthContextType = {
 type AuthContextProviderProps = {
   children: ReactNode
 }
-/**
- * Cria o Context
- */
 export const AuthContext = createContext({} as AuthContextType)
-/**
- * Provider Do Context
- */
 export function AuthContextProvider(props: AuthContextProviderProps) {
-  /**
-   * State Repassado no Context
-   */
   const [user, setUser] = useState<User>()
-  /**
-   * Toda vez que inicia o hook o Effect é chamado e coloca no state o usuario do firebase, state que é repassado no context
-   */
   useEffect(() => {
     /**
      * Listener para verificar se está logado
      */
-    const unsubscribe = auth.onAuthStateChanged((user) => {
+    const unsubscribe = auth.onAuthStateChanged(async (user) => {
       if (user) {
-        const { displayName, uid } = user
-
+        const { displayName, uid, getIdToken } = user
         setUser({
           id: uid,
           name: displayName,
+          token: getIdToken,
         })
       }
     })
-    /**
-     * Quando o componente é desmontado o unsubscribe é chamado retirando o listener do auth
-     */
     return () => {
       unsubscribe()
     }
@@ -62,13 +47,14 @@ export function AuthContextProvider(props: AuthContextProviderProps) {
       .signInWithEmailAndPassword(email, password)
       .then(({ user }) => {
         if (user) {
-          const { displayName, uid } = user
+          const { displayName, uid, getIdToken } = user
           if (displayName || uid) {
             throw new Error('Account with Error')
           }
           setUser({
             id: uid,
             name: displayName,
+            token: getIdToken,
           })
         }
       })
