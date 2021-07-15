@@ -2,9 +2,10 @@ import './styles.scss'
 
 import { FormEvent, useState } from 'react'
 
+import ilustration from '../../assets/images/ilustration.png'
 import logotipo from '../../assets/images/logotipo.png'
 import { useAuth } from '../../hooks/useAuth'
-import { useEffect } from 'react'
+import { useHistory } from 'react-router-dom'
 
 interface DataLogin {
   email: string
@@ -12,24 +13,38 @@ interface DataLogin {
 }
 
 export function Login() {
+  const history = useHistory()
   const { signInEmail, user } = useAuth()
   const [dataLogin, setDataLogin] = useState<DataLogin>({
     email: '',
     password: '',
   })
+
   const handleLogin = (e: FormEvent) => {
     e.preventDefault()
-
+    console.log(user)
     const { email, password } = dataLogin
     if (email && password) {
       signInEmail(email, password)
     }
   }
 
+  const handlePathOfRegister = (e: FormEvent) => {
+    e.preventDefault()
+
+    history.push(`/register`)
+  }
+
   return (
     <div id="page-login">
       <div className="painel-principal">
-        <aside></aside>
+        <aside style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+          <img
+            src={ilustration}
+            alt="Imagem de ilustração"
+            style={{ width: '85%', height: '85%', opacity: 0.9 }}
+          />
+        </aside>
         <main>
           <form onSubmit={handleLogin}>
             <img src={logotipo} alt="Logotipo do projeto" />
@@ -51,7 +66,7 @@ export function Login() {
             </div>
           </form>
           <div className="button-register">
-            <button type="submit">Registrar-se</button>
+            <button onClick={handlePathOfRegister}>Registrar-se</button>
           </div>
         </main>
       </div>

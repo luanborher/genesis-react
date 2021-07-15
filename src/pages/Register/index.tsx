@@ -3,6 +3,7 @@ import './styles.scss'
 import { FormEvent } from 'react'
 import { Link } from 'react-router-dom'
 import { api } from '../../services/api'
+import ilustration from '../../assets/images/ilustration.png'
 import logotipo from '../../assets/images/logotipo.png'
 import { useState } from 'react'
 
@@ -32,7 +33,13 @@ export function Register() {
   return (
     <div id="page-register">
       <div className="painel-principal">
-        <aside></aside>
+        <aside style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+          <img
+            src={ilustration}
+            alt="Imagem de ilustração"
+            style={{ width: '85%', height: '85%', opacity: 0.9 }}
+          />
+        </aside>
         <main>
           <form onSubmit={SendDataOfRegister}>
             <img src={logotipo} alt="Logotipo do projeto" />

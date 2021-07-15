@@ -7,6 +7,7 @@ type User = {
   name: string | null
   token: string | null
 }
+
 type AuthContextType = {
   user: User | undefined
   /**
@@ -20,6 +21,7 @@ type AuthContextType = {
 type AuthContextProviderProps = {
   children: ReactNode
 }
+
 export const AuthContext = createContext({} as AuthContextType)
 export function AuthContextProvider(props: AuthContextProviderProps) {
   const [user, setUser] = useState<User>()
