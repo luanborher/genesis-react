@@ -4,20 +4,158 @@
   align-items: center;
   height: 100vh;
 
+  background: #ffc533;
+  background-image: url('../../assets/images/doodles.png');
+
   .painel-principal {
     display: flex;
 
-    width: 80%;
-    height: 80%;
+    width: 90%;
+    height: 85%;
 
     aside {
-      flex: 4;
-      background: #000;
+      flex: 7;
+      background: #023047;
     }
 
     main {
-      flex: 7;
-      background: #bd1abd;
+      flex: 4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+
+      background: #8ecae6;
+      padding: 0 32px;
+
+      form {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        max-width: 320px;
+        align-items: stretch;
+        text-align: center;
+        gap: 10px;
+
+        img {
+          width: 60%;
+          align-self: center;
+        }
+
+        input {
+          height: 50px;
+          border-radius: 8px;
+          padding: 0 16px;
+          background: #fff;
+          border: 1px solid #ddd;
+          font-size: 12pt;
+        }
+
+        button {
+          margin-top: 16px;
+          height: 50px;
+          border-radius: 8px;
+          font-weight: 500;
+          background: #fb8500;
+          color: #fff;
+          padding: 0 32px;
+          font-size: 14pt;
+
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          cursor: pointer;
+          border: 0;
+
+          transition: filter 0.2s;
+
+          &.outlined {
+            background: #fff;
+            border: 1px solid #fb8500;
+            color: #fb8500;
+          }
+
+          &:not(:disabled):hover {
+            filter: brightness(0.9);
+          }
+
+          &:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+          }
+        }
+
+        button,
+        input {
+          width: 100%;
+        }
+
+        .separator {
+          font-size: 14px;
+          color: #023047;
+
+          margin: 10px 0;
+          display: flex;
+          align-items: center;
+
+          &::before {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: #023047;
+            margin-right: 16px;
+          }
+
+          &::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: #023047;
+            margin-left: 16px;
+          }
+        }
+      }
+
+      .button-register {
+        > button {
+          margin-top: 0;
+          height: 50px;
+          border-radius: 8px;
+          font-weight: 500;
+          background: #fff;
+          color: #fb8500;
+          padding: 0 32px;
+          font-size: 14pt;
+          border: 1px solid #fb8500;
+
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          cursor: pointer;
+
+          transition: filter 0.2s;
+
+          &.outlined {
+            background: #fb8500;
+            border: 1px solid #fff;
+            color: #fff;
+          }
+
+          &:not(:disabled):hover {
+            filter: brightness(0.9);
+            background: #fb8500;
+            border: 1px solid #fff;
+            color: #fff;
+          }
+
+          &:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+          }
+        }
+      }
     }
   }
 }

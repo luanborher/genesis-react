@@ -1,46 +1,45 @@
-import "./styles.scss";
+import './styles.scss'
 
-import { FormEvent } from "react";
-import { Link } from "react-router-dom";
-import { api } from "../../services/api";
-import { useState } from "react";
+import { FormEvent } from 'react'
+import { Link } from 'react-router-dom'
+import { api } from '../../services/api'
+import logotipo from '../../assets/images/logotipo.png'
+import { useState } from 'react'
 
 interface DataRegister {
-  email: string;
-  displayName: string;
-  password: string;
+  email: string
+  displayName: string
+  password: string
 }
 
 export function Register() {
   const [dataRegister, setDataRegister] = useState<Partial<DataRegister>>({
-    email: "",
-    displayName: "",
-    password: "",
-  });
+    email: '',
+    displayName: '',
+    password: '',
+  })
 
   const SendDataOfRegister = (e: FormEvent) => {
-    e.preventDefault();
-    SendData();
-  };
+    e.preventDefault()
+    SendData()
+  }
 
   const SendData = async () => {
-    var res = await api.post("/users", dataRegister);
-    console.log(res);
-  };
+    var res = await api.post('/users', dataRegister)
+    console.log(res)
+  }
 
   return (
     <div id="page-register">
       <div className="painel-principal">
-        <aside>wqewqe</aside>
+        <aside></aside>
         <main>
           <form onSubmit={SendDataOfRegister}>
-            <h2>Genesis</h2>
+            <img src={logotipo} alt="Logotipo do projeto" />
             <input
               type="text"
               placeholder="Digite seu e-mail"
-              onChange={(event) =>
-                setDataRegister({ ...dataRegister, email: event.target.value })
-              }
+              onChange={(event) => setDataRegister({ ...dataRegister, email: event.target.value })}
               value={dataRegister.email}
             />
             <input
@@ -74,5 +73,5 @@ export function Register() {
         </main>
       </div>
     </div>
-  );
+  )
 }
