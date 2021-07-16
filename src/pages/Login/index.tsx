@@ -2,6 +2,7 @@ import './styles.scss'
 
 import { FormEvent, useState } from 'react'
 
+import { AiFillEye } from 'react-icons/ai'
 import ilustration from '../../assets/images/ilustration.png'
 import logotipo from '../../assets/images/logotipo.png'
 import { useAuth } from '../../hooks/useAuth'
@@ -19,6 +20,7 @@ export function Login() {
     email: '',
     password: '',
   })
+  const [showPassword, setShowPassword] = useState(false)
 
   const handleLogin = (e: FormEvent) => {
     e.preventDefault()
@@ -29,9 +31,13 @@ export function Login() {
     }
   }
 
+  const handleShowPassword = (e: FormEvent) => {
+    e.preventDefault()
+    setShowPassword(!showPassword)
+  }
+
   const handlePathOfRegister = (e: FormEvent) => {
     e.preventDefault()
-
     history.push(`/register`)
   }
 
@@ -54,12 +60,14 @@ export function Login() {
               onChange={(event) => setDataLogin({ ...dataLogin, email: event.target.value })}
               value={dataLogin.email}
             />
-            <input
-              type="password"
-              placeholder="Digite sua senha"
-              onChange={(event) => setDataLogin({ ...dataLogin, password: event.target.value })}
-              value={dataLogin.password}
-            />
+            <div>
+              <input
+                type={showPassword ? 'text' : 'password'}
+                placeholder="Digite sua senha"
+                onChange={(event) => setDataLogin({ ...dataLogin, password: event.target.value })}
+                value={dataLogin.password}></input>
+              <AiFillEye onClick={(e) => handleShowPassword(e)} size="25px" className="eye" />
+            </div>
             <button type="submit">Entrar</button>
             <div className="separator">
               <strong>Ainda não possui um cadastro?</strong>
