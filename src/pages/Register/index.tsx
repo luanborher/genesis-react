@@ -14,6 +14,7 @@ interface DataRegister {
 }
 
 export function Register() {
+  const [checkSenha, setCheckSenha] = useState('')
   const [dataRegister, setDataRegister] = useState<Partial<DataRegister>>({
     email: '',
     displayName: '',
@@ -22,12 +23,19 @@ export function Register() {
 
   const SendDataOfRegister = (e: FormEvent) => {
     e.preventDefault()
-    SendData()
+
+    let value = handleConfirmPassword(checkSenha)
+
+    value === 'OK' ? SendData() : console.log('As senhas estão diferentes')
   }
 
   const SendData = async () => {
     var res = await api.post('/users', dataRegister)
     console.log(res)
+  }
+
+  const handleConfirmPassword = (senha: string) => {
+    return senha === dataRegister.password ? 'OK' : 'ERRO'
   }
 
   return (
@@ -60,7 +68,12 @@ export function Register() {
               }
               value={dataRegister.displayName}
             />
-            <input type="text" placeholder="Digite sua senha" />
+            <input
+              type="text"
+              placeholder="Digite sua senha"
+              onChange={(event) => setCheckSenha(event.target.value)}
+              value={checkSenha}
+            />
             <input
               type="text"
               placeholder="Confirme sua senha"
