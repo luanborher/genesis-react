@@ -1,10 +1,12 @@
+@import '../../styles/variables.scss';
+
 #page-login {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
 
-  background: #ffc533;
+  background: $backColor;
   background-image: url('../../assets/images/doodles.png');
 
   .painel-principal {
@@ -15,7 +17,7 @@
 
     aside {
       flex: 7;
-      background: #023047;
+      background: $oneColor;
     }
 
     main {
@@ -25,7 +27,7 @@
       justify-content: center;
       flex-direction: column;
 
-      background: #8ecae6;
+      background: $twoColor;
       padding: 0 32px;
 
       form {
@@ -47,13 +49,21 @@
           left: 40%;
           top: -45%;
           z-index: 2;
+          color: white;
+
+          transition: filter 0.9s;
+
+          &:not(:disabled):hover {
+            color: #000;
+            filter: brightness(0.9);
+          }
         }
 
         input {
           height: 50px;
           border-radius: 8px;
           padding: 0 16px;
-          background: #fff;
+          background: $whiteColor;
           border: 1px solid #ddd;
           font-size: 12pt;
         }
@@ -63,8 +73,8 @@
           height: 50px;
           border-radius: 8px;
           font-weight: 500;
-          background: #fb8500;
-          color: #fff;
+          background: $buttonColor;
+          color: $whiteColor;
           padding: 0 32px;
           font-size: 14pt;
 
@@ -78,9 +88,9 @@
           transition: filter 0.2s;
 
           &.outlined {
-            background: #fff;
-            border: 1px solid #fb8500;
-            color: #fb8500;
+            background: $whiteColor;
+            border: 1px solid $buttonColor;
+            color: $buttonColor;
           }
 
           &:not(:disabled):hover {
@@ -100,7 +110,7 @@
 
         .separator {
           font-size: 14px;
-          color: #023047;
+          color: $oneColor;
 
           margin: 10px 0;
           display: flex;
@@ -110,7 +120,7 @@
             content: '';
             flex: 1;
             height: 1px;
-            background: #023047;
+            background: $oneColor;
             margin-right: 16px;
           }
 
@@ -118,7 +128,7 @@
             content: '';
             flex: 1;
             height: 1px;
-            background: #023047;
+            background: $oneColor;
             margin-left: 16px;
           }
         }
@@ -134,11 +144,11 @@
           height: 50px;
           border-radius: 8px;
           font-weight: 500;
-          background: #fff;
-          color: #fb8500;
+          background: $whiteColor;
+          color: $buttonColor;
           padding: 0 32px;
           font-size: 14pt;
-          border: 1px solid #fb8500;
+          border: 1px solid $buttonColor;
           width: 100%;
           max-width: 320px;
 
@@ -151,16 +161,16 @@
           transition: filter 0.2s;
 
           &.outlined {
-            background: #fb8500;
-            border: 1px solid #fff;
-            color: #fff;
+            background: $buttonColor;
+            border: 1px solid $whiteColor;
+            color: $whiteColor;
           }
 
           &:not(:disabled):hover {
             filter: brightness(0.9);
-            background: #fb8500;
-            border: 1px solid #fff;
-            color: #fff;
+            background: $buttonColor;
+            border: 1px solid $whiteColor;
+            color: $whiteColor;
           }
 
           &:disabled {

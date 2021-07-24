@@ -1,6 +1,7 @@
 import { ReactNode, createContext, useEffect, useState } from 'react'
 
 import { auth } from '../services/firebase'
+import { useHistory } from 'react-router-dom'
 
 type User = {
   id: string | null
@@ -25,6 +26,7 @@ type AuthContextProviderProps = {
 export const AuthContext = createContext({} as AuthContextType)
 export function AuthContextProvider(props: AuthContextProviderProps) {
   const [user, setUser] = useState<User>()
+  const history = useHistory()
   useEffect(() => {
     /**
      * Listener para verificar se está logado
@@ -53,6 +55,8 @@ export function AuthContextProvider(props: AuthContextProviderProps) {
           const { displayName, uid, getIdToken } = user
           if (!displayName || !uid) {
             throw new Error('Account with Error')
+          } else {
+            history.push(`/boards`)
           }
           setUser({
             id: uid,

@@ -1,0 +1,68 @@
+@import '../../styles/variables.scss';
+
+#page-boards {
+  background: $backColor;
+  background-image: url('../../assets/images/doodles.png');
+
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+
+  header {
+    align-self: start;
+    width: 100%;
+    margin-top: -15px;
+
+    .container {
+      background: $whiteColor;
+      padding: 10px 32px;
+
+      display: flex;
+      justify-content: space-between;
+
+      img {
+        width: 150px;
+      }
+
+      div {
+        display: flex;
+        gap: 10px;
+
+        > button {
+          font-size: 22px;
+          font-family: Arial;
+          color: $oneColor;
+
+          padding: 0 24px;
+          border: 1px solid $oneColor;
+          border-radius: 8px;
+
+          cursor: pointer;
+        }
+
+        button:hover {
+          background: $oneColor;
+          color: $whiteColor;
+          border: 1px solid $whiteColor;
+        }
+      }
+    }
+  }
+
+  main {
+    background: $oneColor;
+    width: 95%;
+    height: 80vh;
+    border-radius: 8px;
+    padding: 32px;
+
+    .list-block {
+      display: flex;
+      gap: 10px;
+    }
+  }
+}
