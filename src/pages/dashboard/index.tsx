@@ -11,8 +11,8 @@ export function DashBoard() {
         <div className="container">
           <img src={Logotipo} alt="logotipo padrão do sistema" />
 
-          <div>
-            <button>+ Criar sala</button>
+          <div className="leftBotoes">
+            <button className="btn">+ Criar sala</button>
             <Button />
           </div>
         </div>

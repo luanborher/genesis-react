@@ -30,16 +30,14 @@
 
       div {
         display: flex;
-        gap: 10px;
 
-        > button {
+        button {
           font-size: 22px;
           font-family: Arial;
           color: $oneColor;
 
           padding: 0 24px;
           border: 1px solid $oneColor;
-          border-radius: 8px;
 
           cursor: pointer;
         }
@@ -47,7 +45,12 @@
         button:hover {
           background: $oneColor;
           color: $whiteColor;
-          border: 1px solid $whiteColor;
+          border: 1px solid $oneColor;
+        }
+
+        .btn {
+          border-radius: 8px;
+          margin-right: 16px;
         }
       }
     }

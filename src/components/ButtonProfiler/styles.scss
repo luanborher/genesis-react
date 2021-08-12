@@ -1,20 +1,27 @@
 @import '../../styles/variables.scss';
 
-.button {
-  border-radius: 8px;
-  width: 50px;
+#option {
+  display: flex;
+  justify-content: flex-end;
 
-  justify-content: center;
-  align-items: center;
+  .invisivel {
+    display: none;
+  }
 
-  background: $oneColor;
-  color: $whiteColor;
-  font-size: 32px;
-  font-family: Arial;
+  .leftButton {
+    border-radius: 0 8px 8px 0px;
+  }
 
-  cursor: pointer;
-}
+  .rightButton {
+    border-radius: 8px 0 0 8px;
+  }
 
-.button:hover {
-  opacity: 0.7;
+  #sair {
+    position: absolute;
+    height: 50px;
+    padding: 0;
+    width: 160px;
+    top: 100px;
+    background: white;
+  }
 }
